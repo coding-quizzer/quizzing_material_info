@@ -1,5 +1,10 @@
 const { getVerseWords } = require("./word _searching_functions.js");
 
-it("is a function", () => {
-  getVerseWords();
+it("lists the words in a given sentence", () => {
+  expect(getVerseWords("this is a sentence")).toEqual([
+    "this",
+    "is",
+    "a",
+    "sentence",
+  ]);
 });
