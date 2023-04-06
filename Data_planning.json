@@ -11,41 +11,49 @@
   "words": {
     "in": {
       "id": 1,
+      "word": "in",
       "count": 1,
       "referenceIDs": [1]
     },
     "the": {
       "id": 2,
+      "word": "the",
       "count": 2,
       "referenceIDs": [1]
     },
     "beginning": {
       "id": 3,
+      "word": "beginning",
       "count": 1,
       "referenceIDs": [1]
     },
     "God": {
       "id": 4,
+      "word": "God",
       "count": 1,
       "referenceIDs": [1]
     },
     "created": {
       "id": 5,
+      "word": "created",
       "count": 1,
       "referenceIDs":[1]
     },
     "heavens": {
       "id": 6,
+      "word": "heavens",
       "count": 1,
       "referenceIDs": [1]
     },
     "and": {
       "id": 7,
+      "word": "and",
       "count": 1,
       "referenceIDs": [1]
     },
     "earth": {
       "id": 8,
+      "word": "earth",
       "count": 1,
       "referenceIDs": [1]
     }
