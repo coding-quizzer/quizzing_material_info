@@ -1,0 +1,55 @@
+{
+  "verses": [
+    {
+      "id": 1,
+      "reference": "Gen 1:1",
+      "text": "In the beginning, God created the heavens and the earth",
+      "wordIDs": [1, 2, 3, 4, 5]
+    }
+  ],
+
+  "words": {
+    "in": {
+      "id": 1,
+      "count": 1,
+      "referenceIDs": [1]
+    },
+    "the": {
+      "id": 2,
+      "count": 2,
+      "referenceIDs": [1]
+    },
+    "beginning": {
+      "id": 3,
+      "count": 1,
+      "referenceIDs": [1]
+    },
+    "God": {
+      "id": 4,
+      "count": 1,
+      "referenceIDs": [1]
+    },
+    "created": {
+      "id": 5,
+      "count": 1,
+      "referenceIDs":[1]
+    },
+    "heavens": {
+      "id": 6,
+      "count": 1,
+      "referenceIDs": [1]
+    },
+    "and": {
+      "id": 7,
+      "count": 1,
+      "referenceIDs": [1]
+    },
+    "earth": {
+      "id": 8,
+      "count": 1,
+      "referenceIDs": [1]
+    }
+
+  }
+
+}
