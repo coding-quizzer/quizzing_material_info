@@ -2,7 +2,7 @@
   "name": "quizzing_material_info",
   "version": "1.0.0",
   "description": "",
-  "main": "word _searching_functions.js",
+  "main": "word_searching_functions.js",
   "scripts": {
     "test": "jest"
   },
