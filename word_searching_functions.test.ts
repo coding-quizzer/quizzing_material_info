@@ -107,7 +107,7 @@ describe(addVerseWordsToFullList, () => {
 
   it("Adds new references to the old list when the word already has been recorded", () => {
     const fullWordList = firstVerseWords;
-    // he is ommited, since this test is specifically for old words
+
      const verseObj = {reference: "John 1:2", text: "He was in the beginning with God"}
 
      addVerseWordsToFullList(verseObj, fullWordList);
