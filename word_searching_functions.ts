@@ -10,12 +10,12 @@ type verseWordsData = wordData & {reference: string};
 
 type multipleVerseWordsData = wordData & {references: string[]};
 
-type fullWordList = {
+export type fullWordList = {
     [word:string]: multipleVerseWordsData;
 }
 export const getStringWords: (sentence: string) => wordData[] = function(sentence) {
   const wordObj :{[word:string]: number} = {};
-  const regex = /[a-z]+/gi;
+  const regex = /[a-z']+/gi;
   const wordListWithReps = sentence.match(regex);
   if(!wordListWithReps) {
     throw new Error("No words found in input sentence");
