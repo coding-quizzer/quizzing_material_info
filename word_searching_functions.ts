@@ -81,8 +81,10 @@ export const addVerseWordsToFullList: (verse: {
     completeFullWordList.count += wordObj.count;
     completeFullWordList.references.push(wordObj.reference);
 
-    fullListWordObj = completeFullWordList;
+    fullListWordObj = completeFullWordList
     
   }
 
 }
+
+module.exports = {addVerseWordsToFullList, getStringWords, getVerseWords}
