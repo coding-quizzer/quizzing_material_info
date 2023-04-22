@@ -72,7 +72,16 @@ export const addVerseWordsToFullList: (verse: {
       fullListWordObj = {word: wordObj.word, count: wordObj.count};
       fullListWordObj.references = [wordObj.reference];
       fullWordList[word] = fullListWordObj as multipleVerseWordsData;
+      continue;
     }
+
+    fullListWordObj = fullWordList[word];
+
+    const completeFullWordList = fullListWordObj as multipleVerseWordsData;
+    completeFullWordList.count += wordObj.count;
+    completeFullWordList.references.push(wordObj.reference);
+
+    fullListWordObj = completeFullWordList;
     
   }
 

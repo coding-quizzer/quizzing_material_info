@@ -52,31 +52,86 @@ describe(getVerseWords, () => {
 })
 
 describe(addVerseWordsToFullList, () => {
+  const firstVerseWords = {
+    in: {
+      word: "in",
+      count: 1,
+      references: ["John 1:1"],
+    },
+    the: {
+      word: "the",
+      count: 4,
+      references: ["John 1:1"]
+    },
+    beginning: {
+      word: "beginning",
+      count: 1,
+      references: ["John 1:1"]
+    },
+    was: {
+      word: "was",
+      count: 3,
+      references: ["John 1:1"]
+    },
+    word: {
+      word: "word",
+      count: 3,
+      references: ["John 1:1"]
+    },
+    and: {
+      word: "and",
+      count: 2,
+      references: ["John 1:1"]
+    },
+    with: {
+      word: "with",
+      count: 1,
+      references: ["John 1:1"]
+
+    },
+
+    god: {
+      word: "god",
+      count: 2,
+      references: ["John 1:1"]
+    }
+
+  }
   it("Adds words from the verse to the full words list, if the full list is empty", () => {
     const fullWordList = {};
 
       const verseObj = {reference: "John 1:1", text: "In the beginning was the word, and the word was with God, and the word was God."};
       addVerseWordsToFullList(verseObj, fullWordList);
-      expect(fullWordList).toEqual({
+      expect(fullWordList).toEqual(firstVerseWords)
+  })
+
+  it("Adds new references to the old list when the word already has been recorded", () => {
+    const fullWordList = firstVerseWords;
+    // he is ommited, since this test is specifically for old words
+     const verseObj = {reference: "John 1:2", text: "He was in the beginning with God"}
+
+     addVerseWordsToFullList(verseObj, fullWordList);
+     expect(fullWordList).toEqual(
+      {
         in: {
           word: "in",
-          count: 1,
-          references: ["John 1:1"],
+          count: 2,
+          references: ["John 1:1", "John 1:2"],
         },
         the: {
           word: "the",
-          count: 4,
-          references: ["John 1:1"]
+          count: 5,
+          references: ["John 1:1", "John 1:2"]
         },
         beginning: {
           word: "beginning",
-          count: 1,
-          references: ["John 1:1"]
+          count: 2,
+          references: ["John 1:1", "John 1:2"]
         },
         was: {
           word: "was",
-          count: 3,
-          references: ["John 1:1"]
+          count: 4,
+          references: ["John 1:1", "John 1:2"]
         },
         word: {
           word: "word",
@@ -90,17 +145,23 @@ describe(addVerseWordsToFullList, () => {
         },
         with: {
           word: "with",
-          count: 1,
-          references: ["John 1:1"]
-
+          count: 2,
+          references: ["John 1:1", "John 1:2"]
+    
         },
-
+    
         god: {
           word: "god",
-          count: 2,
-          references: ["John 1:1"]
-        }
+          count: 3,
+          references: ["John 1:1", "John 1:2"]
+        },
 
-      })
+        he: {
+          word: "he",
+          count: 1,
+          references: ["John 1:2"]
+        }
+      }
+     )
   })
 })
