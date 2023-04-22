@@ -1,7 +1,19 @@
+
 type wordData = {
+  // id: number,
   word: string
+  count: number
 }
-export const getVerseWords: (sentence: string) => wordData[] = function(sentence) {
+
+
+type verseWordsData = wordData & {reference: string};
+
+type multipleVerseWordsData = wordData & {references: string[]};
+
+type fullWordList = {
+    [word:string]: multipleVerseWordsData;
+}
+export const getStringWords: (sentence: string) => wordData[] = function(sentence) {
   const wordObj :{[word:string]: number} = {};
   const regex = /[a-z]+/gi;
   const wordListWithReps = sentence.match(regex);
@@ -21,7 +33,7 @@ export const getVerseWords: (sentence: string) => wordData[] = function(sentence
 
   const wordObjectsList = wordListNoReps.map(([word, count], index) => (
       {
-        id: index,
+        // id: index,
         word: word,
         count: count,
       } as wordData
@@ -29,3 +41,39 @@ export const getVerseWords: (sentence: string) => wordData[] = function(sentence
   )
   return wordObjectsList;
 };
+
+export const getVerseWords: (
+  verse: {
+    reference: string,
+    text: string, 
+  }
+  ) => verseWordsData[] = function(verse) {
+  const wordsInVerse = getStringWords(verse.text);
+  const verseWordList = wordsInVerse.map(wordObj => (
+    {
+    ...wordObj,
+    reference: verse.reference
+    })
+  );
+  return verseWordList;
+
+}
+
+export const addVerseWordsToFullList: (verse: {
+  reference: string,
+  text: string,
+}, fullWordList: fullWordList) => void = function (verse, fullWordList) {
+
+  const verseWords = getVerseWords(verse);
+  for(const wordObj of verseWords) {
+    const word = wordObj.word;
+    let fullListWordObj :Partial<multipleVerseWordsData> = {};
+    if(!fullWordList[word]) {
+      fullListWordObj = {word: wordObj.word, count: wordObj.count};
+      fullListWordObj.references = [wordObj.reference];
+      fullWordList[word] = fullListWordObj as multipleVerseWordsData;
+    }
+    
+  }
+
+}
