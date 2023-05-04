@@ -1,14 +1,12 @@
 import { fullWordList } from "./word_searching_functions";
-const { addVerseWordsToFullList } = require("./word_searching_functions");
-const jsonData = require("./data/Luke_1_club150.json");
+const { addVerseListWordsToFullList } = require("./word_searching_functions");
+const jsonData = require("./data/json/Luke_1_club150.json");
 
 console.log(jsonData);
 
 const completeWordList: fullWordList = {};
 
-for(let verse of jsonData) {
-  addVerseWordsToFullList(verse, completeWordList);
-}
+addVerseListWordsToFullList(jsonData, completeWordList);
 
 const sortedValues = Object.values(completeWordList);
 sortedValues.sort((a, b) => ("" + a.word).localeCompare(b.word));

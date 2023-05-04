@@ -1,4 +1,4 @@
-import {addVerseWordsToFullList, getStringWords, getVerseWords} from "./word_searching_functions";
+import {addVerseListWordsToFullList, addVerseWordsToFullList, getStringWords, getVerseWords, verseTextToList} from "./word_searching_functions";
 describe(getStringWords, () => {
   it("returns a list of the correct length for a sentence with distinct words", () => {
     expect(getStringWords("This is a sentence.")).toHaveLength(4);
@@ -164,4 +164,81 @@ describe(addVerseWordsToFullList, () => {
       }
      )
   })
+})
+
+describe(addVerseListWordsToFullList, () => {
+  const fullWordList = {};
+  const verseList = [
+
+    {reference: "John 1:1", text: "In the beginning was the word, and the word was with God, and the word was God."},
+    {reference: "John 1:2", text: "He was in the beginning with God"}
+  ];
+
+  addVerseListWordsToFullList(verseList, fullWordList);
+
+  expect(fullWordList).toEqual(
+    {
+      in: {
+        word: "in",
+        count: 2,
+        references: ["John 1:1", "John 1:2"],
+      },
+      the: {
+        word: "the",
+        count: 5,
+        references: ["John 1:1", "John 1:2"]
+      },
+      beginning: {
+        word: "beginning",
+        count: 2,
+        references: ["John 1:1", "John 1:2"]
+      },
+      was: {
+        word: "was",
+        count: 4,
+        references: ["John 1:1", "John 1:2"]
+      },
+      word: {
+        word: "word",
+        count: 3,
+        references: ["John 1:1"]
+      },
+      and: {
+        word: "and",
+        count: 2,
+        references: ["John 1:1"]
+      },
+      with: {
+        word: "with",
+        count: 2,
+        references: ["John 1:1", "John 1:2"]
+  
+      },
+  
+      god: {
+        word: "god",
+        count: 3,
+        references: ["John 1:1", "John 1:2"]
+      },
+
+      he: {
+        word: "he",
+        count: 1,
+        references: ["John 1:2"]
+      }
+    }
+   )
+})
+
+describe(verseTextToList, () => {
+  const exampleText = ` John 1
+
+  1 In the beginning was the Word, and the Word was with God, and the Word was God.
+  2 He was in the beginning with God.
+  `;
+  expect(verseTextToList(exampleText)).toBe([
+
+    {reference: "John 1:1", text: "In the beginning was the word, and the word was with God, and the word was God."},
+    {reference: "John 1:2", text: "He was in the beginning with God"}
+  ]);
 })

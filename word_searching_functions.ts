@@ -10,6 +10,13 @@ type verseWordsData = wordData & {reference: string};
 
 type multipleVerseWordsData = wordData & {references: string[]};
 
+type verseObj = {
+  reference: string,
+  text: string
+}
+
+type verseObjList = verseObj[];
+
 export type fullWordList = {
     [word:string]: multipleVerseWordsData;
 }
@@ -59,10 +66,7 @@ export const getVerseWords: (
 
 }
 
-export const addVerseWordsToFullList: (verse: {
-  reference: string,
-  text: string,
-}, fullWordList: fullWordList) => void = function (verse, fullWordList) {
+export const addVerseWordsToFullList: (verse: verseObj, fullWordList: fullWordList) => void = function (verse, fullWordList) {
 
   const verseWords = getVerseWords(verse);
   for(const wordObj of verseWords) {
@@ -87,4 +91,14 @@ export const addVerseWordsToFullList: (verse: {
 
 }
 
-module.exports = {addVerseWordsToFullList, getStringWords, getVerseWords}
+export const addVerseListWordsToFullList: (verseList: verseObjList, fullWordList: fullWordList) => void = function (verseList, fullWordList) {
+  for(const verse of verseList) {
+    addVerseWordsToFullList(verse, fullWordList);
+  }
+}
+
+export const verseTextToList: (text: string) => verseObjList = function(text){
+  return [];
+};
+
+module.exports = {addVerseWordsToFullList, addVerseListWordsToFullList, getStringWords, getVerseWords, verseTextToList}
