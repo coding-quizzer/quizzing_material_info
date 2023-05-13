@@ -98,7 +98,34 @@ export const addVerseListWordsToFullList: (verseList: verseObjList, fullWordList
 }
 
 export const verseTextToList: (text: string) => verseObjList = function(text){
-  return [];
+  const lineList = text.split('\n');
+  const chapter = lineList[0];
+  console.log(chapter);
+  const verseNumberRegEx = /[0-9]/;
+  const fullVerseNumberRegEx = /[0-9]+/;
+  const verseObjectList :verseObjList = [];
+  for(let line of lineList) {
+    if(!line[0] || !line[0].match(verseNumberRegEx)){
+      continue;
+    }
+    const verseNumberRegExObject = line.match(fullVerseNumberRegEx);
+    if (!verseNumberRegExObject) {
+      throw new Error("Missing verse number should be weeded out already");
+    }
+
+    const verseNumber = verseNumberRegExObject[0];
+
+    const verseText = line.slice(verseNumber.length + 1);
+
+    const verseObject = {
+      reference: `${chapter}:${verseNumber}`,
+      text: verseText
+    }
+
+
+    verseObjectList.push(verseObject);
+  }
+  return verseObjectList;
 };
 
 module.exports = {addVerseWordsToFullList, addVerseListWordsToFullList, getStringWords, getVerseWords, verseTextToList}

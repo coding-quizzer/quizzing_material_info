@@ -231,14 +231,14 @@ describe(addVerseListWordsToFullList, () => {
 })
 
 describe(verseTextToList, () => {
-  const exampleText = ` John 1
+  const exampleText = `John 1
 
-  1 In the beginning was the Word, and the Word was with God, and the Word was God.
-  2 He was in the beginning with God.
+1 In the beginning was the word, and the word was with God, and the word was God.
+2 He was in the beginning with God.
   `;
-  expect(verseTextToList(exampleText)).toBe([
+  expect(verseTextToList(exampleText)).toEqual([
 
     {reference: "John 1:1", text: "In the beginning was the word, and the word was with God, and the word was God."},
-    {reference: "John 1:2", text: "He was in the beginning with God"}
+    {reference: "John 1:2", text: "He was in the beginning with God."}
   ]);
 })
